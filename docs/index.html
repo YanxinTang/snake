@@ -18,9 +18,34 @@
       border: 1px solid grey;
       display: inline-block;
     }
+
+    .canvas-container {
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .help {
+      width: 320px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .help ul {
+      list-style: none;
+    }
   </style>
 </head>
 <body>
-  <canvas id="container"></canvas>
-<script type="text/javascript" src="main.js"></script></body>
-</html>
+  <div class="canvas-container">
+    <canvas id="container"></canvas>
+  </div>
+  <div class="help">
+    <ul>
+      <li><kbd>↑</kbd> : Up</li>
+      <li><kbd>↓</kbd> : Down</li>
+      <li><kbd>→</kbd> : Right</li>
+      <li><kbd>←</kbd> : Left</li>
+      <li><kbd>space</kbd> : Pause/Resume</li>
+    </ul>
+  </div>
+</html><script type="text/javascript" src="main.js"></script>

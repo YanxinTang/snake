@@ -9,6 +9,8 @@ export default class Game {
   public snake: Snake;                           // Snake          
   public food: Food;                             // Food
   public grid: Grid;                             // Grid
+  public gameover: Boolean                       // Whether or not game is over
+  public gamePaused: Boolean                     // Whether or not game is paused
   private tick: number;                          // Timer
   private speed: number;                         // speed
 
@@ -18,6 +20,8 @@ export default class Game {
     this.snake = new Snake();
     this.food = new Food();
     this.grid = new Grid(this);
+    this.gameover = false;
+    this.gamePaused = false;
     this.tick = null;
     this.speed = 200;
     this.start();
@@ -76,15 +80,18 @@ export default class Game {
   // Game over
   stop(): void {
     clearInterval(this.tick);
+    this.gameover = true;
   }
 
   // Pause game
   pause(): void {
-    this.stop();
+    this.gamePaused = true;
+    clearInterval(this.tick);
   }
 
   // Resume game
   resume(): void {
+    this.gamePaused = false;
     this.tick = setInterval(() => {
       this.update();
     }, this.speed);
@@ -92,9 +99,12 @@ export default class Game {
 
   // Restart game
   restart(): void {
+    clearInterval(this.tick);
     this.snake = new Snake();
     this.food = new Food();
     this.grid = new Grid(this);
+    this.gameover = false;
+    this.start();
   }
 
   up() {

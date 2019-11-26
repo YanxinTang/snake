@@ -14,7 +14,7 @@ export default class Controller {
 
   events(): void {
     window.addEventListener('keydown', (event) => {
-      switch(event.key) {
+      switch(event.code) {
         case 'ArrowUp': {
           this.listeners.forEach(listener => listener.up());
           break;
@@ -32,6 +32,15 @@ export default class Controller {
           break;
         }
         case 'Space': {
+          this.listeners.forEach(listener => {
+            if (listener.gameover) {
+              listener.restart();
+            } else if (listener.gamePaused) {
+              listener.resume()
+            } else {
+              listener.pause()
+            }
+          });
           break;
         }
         default: 
