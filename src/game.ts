@@ -18,7 +18,7 @@ export default class Game {
     this.size = size;
     this.nodeSize = 10;
     this.snake = new Snake();
-    this.food = new Food();
+    this.food = new Food(this);
     this.grid = new Grid(this);
     this.gameover = false;
     this.gamePaused = false;
@@ -101,7 +101,7 @@ export default class Game {
   restart(): void {
     clearInterval(this.tick);
     this.snake = new Snake();
-    this.food = new Food();
+    this.food = new Food(this);
     this.grid = new Grid(this);
     this.gameover = false;
     this.start();
