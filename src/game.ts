@@ -3,6 +3,12 @@ import Food from "./food";
 import Grid from "./grid";
 import Controller from "./controller";
 
+interface Option {
+  size?: number
+  nodeSize?: number
+  speed?: number
+}
+
 export default class Game {
   public size: number;                           // Grid size
   public nodeSize: number;                       // Snake node size
@@ -14,16 +20,22 @@ export default class Game {
   private tick: number;                          // Timer
   private speed: number;                         // speed
 
-  constructor(size: number = 32) {
-    this.size = size;
-    this.nodeSize = 10;
-    this.snake = new Snake();
-    this.food = new Food(this);
-    this.grid = new Grid(this);
+  constructor(userOpt: Option = {}) {
+    const defaultOpt: Option = {
+      size: 32,
+      nodeSize: 10,
+      speed: 200
+    }
+    const opt: Option = {...defaultOpt, ...userOpt};
+    this.size = opt.size;
+    this.nodeSize = opt.nodeSize;
+    this.speed = opt.speed;
     this.gameover = false;
     this.gamePaused = false;
     this.tick = null;
-    this.speed = 200;
+    this.snake = new Snake();
+    this.food = new Food(this);
+    this.grid = new Grid(this);
     this.start();
   }
 
