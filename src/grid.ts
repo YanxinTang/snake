@@ -7,7 +7,7 @@ export default class Grid {
 
   constructor(game: Game) {
     this.game = game;
-    this.canvas = document.body.querySelector("#container");
+    this.canvas = document.body.querySelector(this.game.container);
     this.canvas.height = this.game.size * this.game.nodeSize;
     this.canvas.width = this.game.size * this.game.nodeSize;
     this.ctx = this.canvas.getContext('2d');

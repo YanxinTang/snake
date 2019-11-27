@@ -7,12 +7,14 @@ interface Option {
   size?: number
   nodeSize?: number
   speed?: number
+  container?: string
 }
 
 export default class Game {
   public size: number;                           // Grid size
   public nodeSize: number;                       // Snake node size
-  public snake: Snake;                           // Snake          
+  public snake: Snake;                           // Snake
+  public container: string                       // Canvas element selector
   public food: Food;                             // Food
   public grid: Grid;                             // Grid
   public gameover: Boolean                       // Whether or not game is over
@@ -24,12 +26,14 @@ export default class Game {
     const defaultOpt: Option = {
       size: 32,
       nodeSize: 10,
-      speed: 200
+      speed: 200,
+      container: '#snake-container'
     }
     const opt: Option = {...defaultOpt, ...userOpt};
     this.size = opt.size;
     this.nodeSize = opt.nodeSize;
     this.speed = opt.speed;
+    this.container = opt.container;
     this.gameover = false;
     this.gamePaused = false;
     this.tick = null;
